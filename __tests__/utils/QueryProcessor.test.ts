@@ -2,6 +2,14 @@ import QueryProcessor from "../../utils/QueryProcessor";
 import '@testing-library/jest-dom'
 
 describe("QueryProcessor", () => {
+    test.each([
+        "What is your Andrew ID?",
+        "wHaT iS yOuR aNdReW iD?",
+        "game-request: What is your Andrew ID?",
+    ])('should return Andrew ID for "%s"', (query) => {
+        expect(QueryProcessor(query)).toBe("dbaldsin");
+    });
+
     test("should return a string", () => {
         const query = "test";
         const response: string = QueryProcessor(query);
@@ -22,7 +30,7 @@ describe("QueryProcessor", () => {
         const query = "What is your name?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-            "Rohan"
+            "Eduardo"
           ));
     })
 });
