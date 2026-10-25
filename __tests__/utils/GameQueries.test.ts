@@ -2,6 +2,10 @@ import GameQueries from '../../utils/GameQueries';
 
 describe('game questions', () => {
   test.each([
+    ['What is the scrabble score of ruby?', '9'],
+    ['What is the scrabble score of zoo?', '12'],
+    ['What is the scrabble score of quiz?', '22'],
+    ['What is the scrabble score of abcdefghijklmnopqrstuvwxyz?', '87'],
     ['Which of the following is an anagram of listen: silent, google, enlists, banana?', 'silent'],
     ['Which of the following is an anagram of evil: veils, vile, livee?', 'vile'],
     ['What is 12 plus 8?', '20'],

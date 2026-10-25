@@ -63,6 +63,11 @@ function arithmetic(expression: string): number | undefined {
 
 export default function GameQueries(query: string): string | undefined {
   const q = query.toLowerCase().trim().replace(/\?$/, '').trim();
+  const scrabble = q.match(/what is the scrabble score of ["']?([a-z]+)["']?$/);
+  if (scrabble) {
+    const groups: [string, number][] = [['aeilnorstu', 1], ['dg', 2], ['bcmp', 3], ['fhvwy', 4], ['k', 5], ['jx', 8], ['qz', 10]];
+    return String(scrabble[1].split('').reduce((score, letter) => score + (groups.find(([letters]) => letters.includes(letter))?.[1] || 0), 0));
+  }
   const anagram = q.match(/which of the following is an anagram of ["']?([a-z]+)["']?:\s*(.*)/);
   if (anagram) {
     const signature = (word: string) => word.replace(/[^a-z]/g, '').split('').sort().join('');
