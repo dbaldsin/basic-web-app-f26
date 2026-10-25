@@ -2,6 +2,8 @@ import GameQueries from '../../utils/GameQueries';
 
 describe('game questions', () => {
   test.each([
+    ['Which of the following is an anagram of listen: silent, google, enlists, banana?', 'silent'],
+    ['Which of the following is an anagram of evil: veils, vile, livee?', 'vile'],
     ['What is 12 plus 8?', '20'],
     ['a1b2: what is 3 plus 4 multiplied by 5', '23'],
     ['what is (3 plus 4) multiplied by 5', '35'],

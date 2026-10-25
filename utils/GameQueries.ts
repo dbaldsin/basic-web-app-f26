@@ -63,6 +63,11 @@ function arithmetic(expression: string): number | undefined {
 
 export default function GameQueries(query: string): string | undefined {
   const q = query.toLowerCase().trim().replace(/\?$/, '').trim();
+  const anagram = q.match(/which of the following is an anagram of ["']?([a-z]+)["']?:\s*(.*)/);
+  if (anagram) {
+    const signature = (word: string) => word.replace(/[^a-z]/g, '').split('').sort().join('');
+    return anagram[2].split(',').map(word => word.trim()).find(word => signature(word) === signature(anagram[1])) || '';
+  }
   const integerPower = q.match(/(?:what is|calculate) (-?\d+) (?:to the power of|raised to the power of) (\d+)$/);
   if (integerPower) {
     let exponent = Number(integerPower[2]);
