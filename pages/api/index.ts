@@ -10,8 +10,9 @@ export default function handler(
 ) {
   console.log(req.url);
   
-  const query = req.query.q as string;
+  const query = Array.isArray(req.query.q) ? req.query.q[0] : req.query.q || "";
   const response = QueryProcessor(query);
 
+  res.setHeader("Cache-Control", "no-store");
   res.status(200).send(response);
 }

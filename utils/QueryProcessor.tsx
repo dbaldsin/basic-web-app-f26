@@ -1,4 +1,9 @@
+import GameQueries from "./GameQueries";
+
 export default function QueryProcessor(query: string): string {
+  const gameAnswer = GameQueries(query);
+  if (gameAnswer !== undefined) return gameAnswer;
+
   if (query.toLowerCase().includes("what is your andrew id")) {
     return "dbaldsin";
   }
