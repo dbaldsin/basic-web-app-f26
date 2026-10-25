@@ -63,6 +63,19 @@ function arithmetic(expression: string): number | undefined {
 
 export default function GameQueries(query: string): string | undefined {
   const q = query.toLowerCase().trim().replace(/\?$/, '').trim();
+  const integerPower = q.match(/(?:what is|calculate) (-?\d+) (?:to the power of|raised to the power of) (\d+)$/);
+  if (integerPower) {
+    let exponent = Number(integerPower[2]);
+    if (exponent > 10000 || integerPower[1].length > 1000) return '';
+    let base = BigInt(integerPower[1]);
+    let result = BigInt(1);
+    while (exponent > 0) {
+      if (exponent % 2 === 1) result *= base;
+      exponent = Math.floor(exponent / 2);
+      if (exponent > 0) base *= base;
+    }
+    return result.toString();
+  }
   const list = q.match(/which of the following (?:numbers )?(.*?):\s*(.*)/);
   if (list) {
     const kind = list[1];
